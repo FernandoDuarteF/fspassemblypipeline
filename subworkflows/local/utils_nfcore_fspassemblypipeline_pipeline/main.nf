@@ -99,12 +99,12 @@ workflow PIPELINE_INITIALISATION {
     channel
         .fromList(samplesheetToList(params.input, "${projectDir}/assets/schema_input.json"))
         .map {
-            meta, fastq_1, fastq_2 ->
-                if (!fastq_2) {
-                    return [ meta.id, meta + [ single_end:true ], [ fastq_1 ] ]
-                } else {
-                    return [ meta.id, meta + [ single_end:false ], [ fastq_1, fastq_2 ] ]
-                }
+            meta, clean_1, clean_2, raw_1, raw_2 ->
+                def fastq_1 = clean_1 ?: raw_1
+                def fastq_2 = clean_2 ?: raw_2
+                def single_end = !fastq_2
+                def files = single_end ? [ fastq_1 ] : [ fastq_1, fastq_2 ]
+                return [ meta.id, meta = meta + [ single_end: single_end ], files ]
         }
         .groupTuple()
         .map { samplesheet ->

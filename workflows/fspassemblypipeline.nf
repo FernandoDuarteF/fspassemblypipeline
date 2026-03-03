@@ -30,6 +30,8 @@ workflow FSPASSEMBLYPIPELINE {
     //
     // SUBWORKFLOW: Run PREPROCESSING
     //
+    ch_samplesheet.view()
+
     PREPROCESSING (
         ch_samplesheet
     )

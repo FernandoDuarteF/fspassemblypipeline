@@ -1,0 +1,3 @@
+sample,raw_1,raw_2,clean_1,clean_2
+SAMPLE_FSP_PAIRED_END_raw,./assets/dataset/B37-LG146-LP1_R1.fastq.gz,./assets/dataset/B37-LG146-LP1_R2.fastq.gz,,
+SAMPLE_FSP_PAIRED_END_clean,,,./assets/dataset/B37-LG146-LP1_R1_clean.fastq.gz,./assets/dataset/B37-LG146-LP1_R2_clean.fastq.gz
